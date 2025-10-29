@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router";
+import { Navigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import DetailPage from "../pages/DetailPage";
 import ListPage from "../pages/ListPage";
@@ -18,6 +19,14 @@ export const router = createBrowserRouter([
             {
                 path: "launches",
                 element: <ListPage />,
+            },
+            {
+                path: "detail/:id",
+                element: <DetailPage />,
+            },
+            {
+                path: "detail",
+                element: <Navigate to="/launches" replace />,
             },
             {
                 path: "details/:id",

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useLaunches } from "../hooks";
+import { useLaunches } from "../features/launches/hooks";
 import LaunchCard from "../features/launches/components/LaunchCard";
 import LaunchFilters from "../features/launches/components/LaunchFilters";
 import Loading from "../components/Loading";
