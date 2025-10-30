@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useLaunches } from "../features/launches/hooks";
 import LaunchCard from "../features/launches/components/LaunchCard";
 import LaunchFilters from "../features/launches/components/LaunchFilters";
+import SkeletonCard from "../components/SkeletonCard";
 import Loading from "../components/Loading";
 import ErrorBox from "../components/ErrorBoundary";
 import Pagination from "../components/Pagination";
@@ -43,22 +44,36 @@ export default function ListPage() {
     setSearch(qs);
   };
 
-  if (isLoading) return <Loading />;
+  if (isLoading) {
+    return (
+      <div className="space-y-4">
+        <div className="surface">
+          <LaunchFilters q={q} onQ={setQ} status={status} onStatus={setStatus} />
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)}
+        </div>
+      </div>
+    )
+  }
   if (error) return <ErrorBox error={error} />;
 
   return (
     <div className="space-y-4">
-      <h1 className="text-xl font-semibold">SpaceX Launches</h1>
 
-      <div className="rounded-lg border bg-white p-4">
-        <LaunchFilters q={q} onQ={setQ} status={status} onStatus={setStatus} />
-        <div className="mt-3">
-          <button
-            onClick={applyFilters}
-            className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
-          >
-            Apply
-          </button>
+      <div className="surface">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex-1">
+            <LaunchFilters q={q} onQ={setQ} status={status} onStatus={setStatus} />
+          </div>
+          <div className="shrink-0">
+            <button
+              onClick={applyFilters}
+              className="rounded-md border px-3 py-2 text-sm hover:bg-white/10"
+            >
+              Apply
+            </button>
+          </div>
         </div>
       </div>
 
@@ -66,14 +81,16 @@ export default function ListPage() {
         {current.map(l => <LaunchCard key={l.id} launch={l} />)}
       </div>
 
-      <Pagination
-        page={page}
-        pageCount={pageCount}
-        onPageChange={(p) => {
-          const qs = setParams({ q, status, page: p });
-          setSearch(qs);
-        }}
-      />
+      <div className="pagination">
+        <Pagination
+          page={page}
+          pageCount={pageCount}
+          onPageChange={(p) => {
+            const qs = setParams({ q, status, page: p });
+            setSearch(qs);
+          }}
+        />
+      </div>
     </div>
   );
 }

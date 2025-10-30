@@ -8,9 +8,9 @@ type Props = {
 export default function LaunchFilters({ q, onQ, status, onStatus }: Props) {
     return (
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <input className="rounded-md border px-3 py-2 w-full sm:max-w-xs"
+            <input className="rounded-md border border-white/10 bg-transparent text-slate-200 placeholder-slate-400 px-3 py-2 w-full sm:max-w-xs"
                 placeholder="Search by name…" value={q} onChange={e => onQ(e.target.value)} />
-            <select className="rounded-md border px-3 py-2 w-full sm:w-auto"
+            <select className="rounded-md border border-white/10 bg-transparent text-slate-200 placeholder-slate-400 px-3 py-2 w-full sm:w-auto"
                 value={status} onChange={e => onStatus(e.target.value)}>
                 <option value="all">All</option>
                 <option value="success">Success</option>

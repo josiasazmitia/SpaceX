@@ -23,7 +23,26 @@
 
 	/* Small utility to make cards look nicer if used */
 	.card {
-		@apply bg-slate-800/60 backdrop-blur-sm rounded-xl shadow-md p-6;
+		@apply bg-slate-800/55 backdrop-blur-sm rounded-xl shadow-sm p-6 border border-slate-700/40;
+	}
+
+	/* Surface for panels/filters that should be lighter than the page but not pure white */
+	.surface {
+		@apply bg-slate-800/50 border border-slate-700/30 rounded-lg p-4;
+	}
+
+	/* Buttons */
+	.btn-primary {
+		@apply bg-sky-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-400;
+	}
+
+	.btn-ghost {
+		@apply bg-transparent text-slate-300 border border-slate-700/30 px-3 py-2 rounded-md hover:bg-white/2;
+	}
+
+	/* Pagination container */
+	.pagination {
+		@apply mt-6 flex items-center justify-center gap-3 text-sm;
 	}
 }
 
@@ -31,3 +50,6 @@
 .muted { @apply text-slate-400; }
 .page-padding { @apply container mx-auto px-4; }
 
+.empty-state {
+  @apply text-center py-10 text-slate-400;
+}

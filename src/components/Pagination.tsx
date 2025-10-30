@@ -8,17 +8,17 @@ type Props = {
 
 export default function Pagination({ page, pageCount, onPageChange }: Props) {
     return (
-        <div className="mt-4 flex items-center gap-2">
+        <div className="pagination">
             <button
-                className="rounded border px-3 py-1 disabled:opacity-50"
+                className="btn-ghost disabled:opacity-50"
                 onClick={() => onPageChange(page - 1)}
                 disabled={page <= 1}
             >
                 Prev
             </button>
-            <span className="text-sm">Page {page} / {pageCount}</span>
+            <span className="text-sm muted">Page {page} / {pageCount}</span>
             <button
-                className="rounded border px-3 py-1 disabled:opacity-50"
+                className="btn-primary disabled:opacity-50"
                 onClick={() => onPageChange(page + 1)}
                 disabled={page >= pageCount}
             >
